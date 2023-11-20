@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.safestring import mark_safe
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(
@@ -93,8 +93,11 @@ class Document(BaseModel):
         verbose_name = "Fayl"
         verbose_name_plural = "Fayllar"
 
+    def file_url_tag(self):
+        if self.file_url:
+            return mark_safe(f'<a href="{self.file_url}">{self.file_url}</a>')
     
-
+        return "Fayl yo'q"
 
 class BotUser(BaseModel):
     tg_id = models.IntegerField(verbose_name="Telegram id",unique=True)
