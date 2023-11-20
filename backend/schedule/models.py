@@ -11,7 +11,7 @@ class BaseModel(models.Model):
 
 # Create your models here.
 class Room(BaseModel):
-    number = models.IntegerField(verbose_name="Xona raqami")
+    number = models.CharField(max_length=55,verbose_name="O'quv xonasi")
     size = models.IntegerField(verbose_name="Xona o'lchami")
     room_type = models.CharField(max_length=50,choices=(('Amaliyot','Amaliyot'),("Maru'za","Maru'za"),('Laboratoriya','Laboratoriya')),verbose_name="Xona turi")
 
