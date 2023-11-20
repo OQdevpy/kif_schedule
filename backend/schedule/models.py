@@ -94,6 +94,8 @@ class Document(BaseModel):
         verbose_name = "Fayl"
         verbose_name_plural = "Fayllar"
 
+    
+
 
 class BotUser(BaseModel):
     tg_id = models.IntegerField(verbose_name="Telegram id",unique=True)

@@ -11,7 +11,7 @@ class GroupViewSet(ModelViewSet):
     serializer_class = GroupSerializer
 
 
-class DocumentViewSet(ListModelMixin, GenericViewSet):
+class DocumentViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
 
