@@ -82,7 +82,6 @@ class Schedule(BaseModel):
         verbose_name = "Dars jadvali"
         verbose_name_plural = "Dars jadvali"
 
-
 class Document(BaseModel):
     title = models.CharField(max_length=50, verbose_name="Fayl nomi")
     file_url = models.URLField(verbose_name="Fayl url")
