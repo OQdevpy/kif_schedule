@@ -1,31 +1,16 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-menu_btn_ru = ReplyKeyboardMarkup(
-    keyboard=[
-        
-        [
-            KeyboardButton(text="📨 Сообщить о коррупции"),              
-            ],
-       
-        [
-            KeyboardButton(text="🇺🇿/🇷🇺 Настройка языка бота"),
-            # KeyboardButton(text="Ma'lumotlarimni o'zgartirish"),
-        ]
-       
-    ],
-    resize_keyboard=True,
-    input_field_placeholder="Главное меню"
-
-)
+# Asosiy menu
 menu_btn = ReplyKeyboardMarkup(
     keyboard=[
-        
         [
-            KeyboardButton(text="📨 Korrupsiya haqida xabar berish"),              
+            KeyboardButton(text="📆 Dars jadvali"),              
             ],
- 
         [
-            KeyboardButton(text="🇺🇿/🇷🇺 Bot tilini sozlash"),
+            KeyboardButton(text="📄 Talaba xujjatlari"),              
+            ],
+        [
+            KeyboardButton(text="📨 Dekanatga xabar yozish"),
         ]
        
     ],
@@ -47,6 +32,7 @@ message_phone = ReplyKeyboardMarkup(
         input_field_placeholder="Phone number is required"
 
     )
+
 back_btn = ReplyKeyboardMarkup(
         keyboard=[
             [
