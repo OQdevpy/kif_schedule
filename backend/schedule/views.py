@@ -27,6 +27,6 @@ class ScheduleViewSet(ListModelMixin, GenericViewSet):
         return qs
 
 
-class BotUserListRetrieve(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+class BotUserListRetrieve(ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     queryset = BotUser.objects.all()
     serializer_class = BotUserSerializer
