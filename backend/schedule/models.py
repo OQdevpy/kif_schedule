@@ -95,7 +95,7 @@ class Document(BaseModel):
 
     def file_url_tag(self):
         if self.file_url:
-            return mark_safe(f'<a href="{self.file_url}">{self.file_url}</a>')
+            return mark_safe(f'<a href="{self.file_url}" blank=True>{self.file_url}</a>')
     
         return "Fayl yo'q"
 
@@ -104,7 +104,7 @@ class BotUser(BaseModel):
     username = models.CharField(
         max_length=50, verbose_name="Telegram username",
         null=True, blank=True,
-        unique=True, db_index=True,
+       db_index=True,
         error_messages={
             "unique": "A user with that username already exists.",
         },)
