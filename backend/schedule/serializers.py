@@ -10,7 +10,7 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class ScheduleSerializer(serializers.ModelSerializer):
-    group = serializers.CharField(sorce = "group.academic_code")
+    group = serializers.CharField(source = "group.academic_code")
     room = serializers.CharField(source = "room.number")
     room_type = serializers.CharField(source = "room.room_type")
     subject = serializers.CharField(source = "subject.name")

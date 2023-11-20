@@ -16,7 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+
+from schedule.views import BotUserListRetrieve, DocumentViewSet, GroupViewSet, ScheduleViewSet
+from .schema import swagger_urlpatterns
+
+router = DefaultRouter()
+router.register('group', GroupViewSet)
+router.register("document", DocumentViewSet)
+router.register("schedule", ScheduleViewSet)
+router.register("botuser", BotUserListRetrieve)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+
+urlpatterns += swagger_urlpatterns

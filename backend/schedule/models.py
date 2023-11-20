@@ -96,16 +96,25 @@ class Document(BaseModel):
 
 
 class BotUser(BaseModel):
-    tg_id = models.IntegerField(verbose_name="Telegram id")
+    tg_id = models.IntegerField(verbose_name="Telegram id",unique=True)
     username = models.CharField(
-        max_length=50, verbose_name="Telegram username")
+        max_length=50, verbose_name="Telegram username",
+        null=True, blank=True,
+        unique=True, db_index=True,
+        error_messages={
+            "unique": "A user with that username already exists.",
+        },)
     full_name = models.CharField(
-        max_length=50, verbose_name="Telegram full name")
+        max_length=50, verbose_name="Telegram full name",null=True,blank=True)
     phone_number = models.CharField(
         max_length=50, verbose_name="Tel raqam", null=True, blank=True)
+    
+    
 
-    def __str__(self):
-        return self.username
+    def str(self):
+        if self.full_name:
+            return self.full_name
+        return self.tg_id
 
     class Meta:
         verbose_name = "Foydalanuvchi"
