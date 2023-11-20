@@ -95,7 +95,7 @@ class Document(BaseModel):
 
     def file_url_tag(self):
         if self.file_url:
-            return mark_safe(f'<a href="{self.file_url}" blank=True>{self.file_url}</a>')
+            return mark_safe(f'<a href="{self.file_url}" target=True>{self.file_url}</a>')
     
         return "Fayl yo'q"
 

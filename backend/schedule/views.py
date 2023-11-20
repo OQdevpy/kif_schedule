@@ -30,3 +30,4 @@ class ScheduleViewSet(ListModelMixin, GenericViewSet):
 class BotUserListRetrieve(ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     queryset = BotUser.objects.all()
     serializer_class = BotUserSerializer
+    lookup_field = "tg_id"
