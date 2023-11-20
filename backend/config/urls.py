@@ -31,5 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+urlpatterns+=router.urls
+
 
 urlpatterns += swagger_urlpatterns
