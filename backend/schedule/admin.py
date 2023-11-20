@@ -41,10 +41,10 @@ class ScheduleAdmin(admin.ModelAdmin):
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ['title', 'file_url','id']
+    list_display = ['id','title', 'file_url_tag',]
     search_fields = ['title', 'file_url']
     list_filter = ['title', 'file_url']
-    list_display_links = ['title', 'file_url']
+    list_display_links = ['id','title', ]
     
 
 
