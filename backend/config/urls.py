@@ -32,6 +32,4 @@ urlpatterns = [
 ]
 
 urlpatterns+=router.urls
-
-
 urlpatterns += swagger_urlpatterns
