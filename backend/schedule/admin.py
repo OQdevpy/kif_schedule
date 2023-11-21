@@ -3,6 +3,10 @@ from .models import *
 
 # Register your models here.
 
+admin.site.site_header = "KIF BOT Admin Panel"
+admin.site.site_title = "Admin Panel"
+admin.site.index_title = "KIF BOT"
+
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):

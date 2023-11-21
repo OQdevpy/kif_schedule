@@ -43,3 +43,14 @@ back_btn = ReplyKeyboardMarkup(
         input_field_placeholder="Back to menu"
 
     )
+
+
+def student_documents_btn(docs):
+    docs_btn = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+
+    for d in docs:
+        docs_btn.insert(KeyboardButton(text=d['title']))
+
+    docs_btn.add(KeyboardButton(text="🔙 Back"))
+
+    return docs_btn

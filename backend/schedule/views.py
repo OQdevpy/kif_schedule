@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .serializers import *
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 # Create your views here.
@@ -42,3 +43,9 @@ class BotUserListRetrieve(ListModelMixin, CreateModelMixin, RetrieveModelMixin, 
     queryset = BotUser.objects.all()
     serializer_class = BotUserSerializer
     lookup_field = "tg_id"
+
+
+class GetBotUserView(RetrieveAPIView):
+    queryset = BotUser.objects.all()
+    serializer_class = BotUserSerializer
+    lookup_field = "full_name"

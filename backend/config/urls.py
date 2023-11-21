@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from schedule.views import BotUserListRetrieve, DocumentViewSet, GroupViewSet, ScheduleViewSet
+from schedule.views import BotUserListRetrieve, DocumentViewSet, GroupViewSet, ScheduleViewSet, GetBotUserView
 from .schema import swagger_urlpatterns
 
 router = DefaultRouter()
@@ -29,6 +29,8 @@ router.register("botuser", BotUserListRetrieve)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('getuser/<str:full_name>/', GetBotUserView.as_view())
+
 ]
 
 urlpatterns+=router.urls

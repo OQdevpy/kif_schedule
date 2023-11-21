@@ -22,15 +22,11 @@ class ScheduleSerializer(serializers.ModelSerializer):
     
 # write sz for Document and BotUser
 class DocumentSerializer(serializers.ModelSerializer):
-
-    
     class Meta:
         model = Document
         fields = "__all__"
 
 class BotUserSerializer(serializers.ModelSerializer):
-
-    
     class Meta:
         model = BotUser
         fields = "__all__"

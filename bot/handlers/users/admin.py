@@ -4,7 +4,7 @@ from keyboards.default.defoult_btn import back_btn,  menu_btn
 from aiogram import types, utils
 
 from data.config import ADMINS
-from loader import dp, db, bot
+from loader import dp, bot
 
 from datetime import datetime
 

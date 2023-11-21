@@ -110,6 +110,9 @@ class BotUser(BaseModel):
         },)
     full_name = models.CharField(
         max_length=50, verbose_name="Telegram full name",null=True,blank=True)
+    user_full_name = models.CharField(
+        max_length=50, verbose_name="User full name", null=True, blank=True
+    )
     phone_number = models.CharField(
         max_length=50, verbose_name="Tel raqam", null=True, blank=True)
     

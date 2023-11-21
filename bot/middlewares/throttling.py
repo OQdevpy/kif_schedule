@@ -5,10 +5,9 @@ from aiogram.dispatcher import DEFAULT_RATE_LIMIT
 from aiogram.dispatcher.handler import CancelHandler, current_handler
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from aiogram.utils.exceptions import Throttled
-from loader import db, bot
+from loader import bot
 import sqlite3
 
-from utils.misc import subscription
 
 class ThrottlingMiddleware(BaseMiddleware):
     """
