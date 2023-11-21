@@ -41,6 +41,7 @@ class Teacher(BaseModel):
 
 class Group(BaseModel):
     academic_code = models.CharField(max_length=50, verbose_name="Grurh code")
+    kurs = models.IntegerField(verbose_name="Kurs",choices=((1,1),(2,2),(3,3),(4,4),(5,5)))
 
     def __str__(self):
         return self.academic_code

@@ -11,6 +11,11 @@ class GroupViewSet(ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+    def get_queryset(self):
+        if kurs := self.request.GET.get("kurs", None):
+            return self.queryset.filter(kurs=int(kurs))
+        return self.queryset.all()
+
 
 class DocumentViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     queryset = Document.objects.all()
