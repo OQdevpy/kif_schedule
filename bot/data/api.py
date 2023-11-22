@@ -60,13 +60,13 @@ def get_sources():
     response = requests.get(url)
     return response.json()
 
-def get_sources_by_id(id):
-    url = BASE_URL + f'document/{id}/'
+def get_sources_by_id(title):
+    url = BASE_URL + f'document/{title}/'
     response = requests.get(url)
     return response.json()
 
-def get_groups():
-    url = BASE_URL + 'group/'
+def get_groups(course):
+    url = BASE_URL + f'group/?kurs={course}'
     response = requests.get(url)
     return response.json()
 
@@ -110,7 +110,7 @@ def get_user_with_name(full_name):
 # print(a)
 
 ### get sources by id success
-# a = get_sources_by_id(id=1)
+# a = get_sources_by_id(title='Signallar amaliy')
 # print(a)
 
 ### get groups success

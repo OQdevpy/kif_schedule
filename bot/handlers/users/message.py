@@ -68,4 +68,3 @@ async def send_message(message: types.Message, state: FSMContext):
     update_full_name(telegram_id=user_.id, full_name=user_.full_name)
     await message.answer(f"Xabaringiz yuborildi ✅", reply_markup=menu_btn)
     await state.finish()
-
