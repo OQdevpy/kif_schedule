@@ -85,7 +85,7 @@ class Schedule(BaseModel):
 
 class Document(BaseModel):
     title = models.CharField(max_length=50, verbose_name="Fayl nomi")
-    file_url = models.URLField(verbose_name="Fayl url")
+    file_url = models.FileField(upload_to="documents/", verbose_name="Fayl url")
 
     def __str__(self):
         return self.title
@@ -96,7 +96,7 @@ class Document(BaseModel):
 
     def file_url_tag(self):
         if self.file_url:
-            return mark_safe(f'<a href="{self.file_url}" target=True>{self.file_url}</a>')
+            return mark_safe(f'<a href="/media/{self.file_url}" target=True>{self.file_url}</a>')
     
         return "Fayl yo'q"
 

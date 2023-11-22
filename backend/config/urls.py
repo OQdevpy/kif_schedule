@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-
+from django.conf import settings
+from django.conf.urls.static import static
 from schedule.views import BotUserListRetrieve, DocumentViewSet, GroupViewSet, ScheduleViewSet, GetBotUserView
 from .schema import swagger_urlpatterns
 
@@ -34,4 +35,8 @@ urlpatterns = [
 ]
 
 urlpatterns+=router.urls
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 urlpatterns += swagger_urlpatterns
+
