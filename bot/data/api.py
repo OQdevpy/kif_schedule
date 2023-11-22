@@ -1,8 +1,8 @@
 import requests
-# from data.config import BASE_URL
+from data.config import BASE_URL
 import json
 
-BASE_URL = 'http://127.0.0.1:8000/'
+# BASE_URL = 'http://127.0.0.1:8000/'
 
 def create_user(telegram_id, username, full_name, is_active):
     url = BASE_URL + 'botuser/'
