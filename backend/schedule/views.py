@@ -21,6 +21,7 @@ class GroupViewSet(ModelViewSet):
 class DocumentViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+    lookup_field = "title"
 
 
 class ScheduleViewSet(ListModelMixin, GenericViewSet):
@@ -35,7 +36,7 @@ class ScheduleViewSet(ListModelMixin, GenericViewSet):
         return qs
     @action(detail=True, methods=["GET"])
     def group(self, request, group=None):
-        qs = self.queryset.filter(group=int(group))
+        qs = self.queryset.filter(group=int(group)).order_by("day", "para")
         days = ("Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba")
         data = {
             day: self.get_serializer(qs.filter(day=day), many=True).data
