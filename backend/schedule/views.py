@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .serializers import *
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 # Create your views here.
@@ -20,6 +21,7 @@ class GroupViewSet(ModelViewSet):
 class DocumentViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+    lookup_field = "title"
 
 
 class ScheduleViewSet(ListModelMixin, GenericViewSet):
@@ -34,7 +36,7 @@ class ScheduleViewSet(ListModelMixin, GenericViewSet):
         return qs
     @action(detail=True, methods=["GET"])
     def group(self, request, group=None):
-        qs = self.queryset.filter(group=int(group))
+        qs = self.queryset.filter(group=int(group)).order_by("day", "para")
         days = ("Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba")
         data = {
             day: self.get_serializer(qs.filter(day=day), many=True).data
@@ -47,3 +49,9 @@ class BotUserListRetrieve(ListModelMixin, CreateModelMixin, RetrieveModelMixin, 
     queryset = BotUser.objects.all()
     serializer_class = BotUserSerializer
     lookup_field = "tg_id"
+
+
+class GetBotUserView(RetrieveAPIView):
+    queryset = BotUser.objects.all()
+    serializer_class = BotUserSerializer
+    lookup_field = "full_name"
