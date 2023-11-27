@@ -31,6 +31,7 @@ def update_full_name(telegram_id, full_name):
     }
     response = requests.patch(url, data=data)
     return response.status_code
+
 def update_user_full_name(telegram_id, full_name):
     url = BASE_URL + f'botuser/{telegram_id}/'
     data = {
@@ -38,6 +39,7 @@ def update_user_full_name(telegram_id, full_name):
     }
     response = requests.patch(url, data=data)
     return response.status_code
+
 def update_tg_username(telegram_id, username):
     url = BASE_URL + f'botuser/{telegram_id}/'
     data = {
@@ -45,6 +47,7 @@ def update_tg_username(telegram_id, username):
     }
     response = requests.patch(url, data=data)
     return response.status_code
+
 def get_all_users():
     url = BASE_URL + 'botuser/'
     response = requests.get(url)

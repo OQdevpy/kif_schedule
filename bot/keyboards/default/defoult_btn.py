@@ -11,6 +11,9 @@ menu_btn = ReplyKeyboardMarkup(
             ],
         [
             KeyboardButton(text="📨 Dekanatga xabar yozish"),
+        ],
+         [
+            KeyboardButton(text="📄 Dekanatga hujjat yuborish"),
         ]
        
     ],

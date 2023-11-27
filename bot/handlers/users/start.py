@@ -47,9 +47,21 @@ async def schedule_func(call: types.CallbackQuery):
     for day, lessons in schedule.items():
         schedule_text += f"🔘 <b>{day}</b>\n"
         for lesson in lessons:
-            schedule_text += f"    ▪️ {lesson['para']} - para | 🏫 {lesson['room']} xona\n"
-            schedule_text += f"    📚  Fan: <b>{lesson['subject']}</b> \n"\
-                             f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
+            if lesson['week'] == 'full':
+                schedule_text += f"    ▪️ {lesson['para']} - juftlik | 🏫 {lesson['room']} xona\n"
+                schedule_text += f"    📚  Fan: <b>{lesson['subject']}</b> \n"\
+                                f"    📝  Dars turi: <i>{lesson['lesson_type']}</i>\n"\
+                                f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
+            elif lesson['week'] == 'odd':
+                schedule_text += f"    ▪️ {lesson['para']} - juftlik (toq hafta) | 🏫 {lesson['room']} xona\n"\
+                                f"    📚  Fan: <b>{lesson['subject']}</b> \n"\
+                                f"    📝  Dars turi: <i>{lesson['lesson_type']}</i>\n"\
+                                f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
+            elif lesson['week'] == 'even':
+                schedule_text += f"    ▪️<b> {lesson['para']} - juftlik (juft hafta) </b>| 🏫 {lesson['room']} xona\n"\
+                                f"    📚  Fan: <b>{lesson['subject']}</b> \n"\
+                                f"    📝  Dars turi: <i>{lesson['lesson_type']}</i>\n"\
+                                f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
 
     await call.message.answer(schedule_text)
 
