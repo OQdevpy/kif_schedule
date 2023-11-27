@@ -48,19 +48,16 @@ async def schedule_func(call: types.CallbackQuery):
         schedule_text += f"🔘 <b>{day}</b>\n"
         for lesson in lessons:
             if lesson['week'] == 'full':
-                schedule_text += f"    ▪️ {lesson['para']} - juftlik | 🏫 {lesson['room']} xona\n"
-                schedule_text += f"    📚  Fan: <b>{lesson['subject']}</b> \n"\
-                                f"    📝  Dars turi: <i>{lesson['lesson_type']}</i>\n"\
+                schedule_text += f"    ▪️<b>  {lesson['para']} - juftlik </b>| 🏫 {lesson['room']} xona\n"
+                schedule_text += f"    📚  Fan: <b>{lesson['subject']}</b> (<i>{lesson['lesson_type']}</i>) \n"\
                                 f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
             elif lesson['week'] == 'odd':
-                schedule_text += f"    ▪️ {lesson['para']} - juftlik (toq hafta) | 🏫 {lesson['room']} xona\n"\
-                                f"    📚  Fan: <b>{lesson['subject']}</b> \n"\
-                                f"    📝  Dars turi: <i>{lesson['lesson_type']}</i>\n"\
+                schedule_text += f"    ▪️<b>  {lesson['para']} - juftlik (toq hafta) </b>| 🏫 {lesson['room']} xona\n"\
+                                f"    📚  Fan: <b>{lesson['subject']}</b> (<i>{lesson['lesson_type']}</i>)\n"\
                                 f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
             elif lesson['week'] == 'even':
                 schedule_text += f"    ▪️<b> {lesson['para']} - juftlik (juft hafta) </b>| 🏫 {lesson['room']} xona\n"\
-                                f"    📚  Fan: <b>{lesson['subject']}</b> \n"\
-                                f"    📝  Dars turi: <i>{lesson['lesson_type']}</i>\n"\
+                                f"    📚  Fan: <b>{lesson['subject']}</b> (<i>{lesson['lesson_type']}</i>)\n"\
                                 f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
 
     await call.message.answer(schedule_text)
@@ -91,10 +88,11 @@ async def echo(message: types.Message, state: FSMContext):
     if doc.get('file_url'):
         file_url = doc['file_url']
         file_name = file_url.split("/")[-1]
+        caption = doc.get("description")
         file = requests.get(file_url)
         with open(f"{file_name}", "wb") as f:
             f.write(file.content)
-        await message.answer_document(document=InputFile(file_name) ,caption=doc_id, reply_markup=student_documents_btn(docs))
+        await message.answer_document(document=InputFile(file_name) ,caption=caption, reply_markup=student_documents_btn(docs))
 
     await state.set_state("docs")
 

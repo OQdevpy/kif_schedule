@@ -13,7 +13,7 @@ def schedule_kurs_btn_func(courses=4):
 
 
 def schedule_group_btn_func(groups):
-    schedule_group_btn = InlineKeyboardMarkup(row_width=2)
+    schedule_group_btn = InlineKeyboardMarkup(row_width=3)
     for g in groups:
         schedule_group_btn.insert(InlineKeyboardButton(text=g['academic_code'], callback_data=f"group_{g['id']}"))
     schedule_group_btn.add(InlineKeyboardButton(text="🔙 Back", callback_data="back"))
