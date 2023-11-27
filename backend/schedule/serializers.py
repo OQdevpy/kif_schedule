@@ -11,7 +11,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class ScheduleSerializer(serializers.ModelSerializer):
     group = serializers.CharField(source = "group.academic_code")
-    room = serializers.CharField(source = "room.number")
+    room = serializers.CharField(source = "room.room")
     room_type = serializers.CharField(source = "room.room_type")
     subject = serializers.CharField(source = "subject.name")
     teacher = serializers.CharField(source = "teacher.name")

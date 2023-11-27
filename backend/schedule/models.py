@@ -15,13 +15,13 @@ class BaseModel(models.Model):
 
 
 class Room(BaseModel):
-    number = models.CharField(max_length=55, verbose_name="O'quv xonasi")
-    size = models.IntegerField(verbose_name="Xona o'lchami")
+    room = models.CharField(max_length=55, verbose_name="O'quv xonasi")
+    size = models.IntegerField(verbose_name="Xona o'lchami", default=30)
     room_type = models.CharField(max_length=50, choices=(('Amaliyot', 'Amaliyot'), (
-        "Maru'za", "Maru'za"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Xona turi")
+        "Maru'za", "Maru'za"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Xona turi", default="Amaliyot")
 
     def __str__(self):
-        return f"{self.number} - xona"
+        return f"{self.room} - {self.room_type} ({self.size})"
 
     class Meta:
         verbose_name = "Xona"
@@ -40,8 +40,8 @@ class Teacher(BaseModel):
 
 
 class Group(BaseModel):
-    academic_code = models.CharField(max_length=50, verbose_name="Grurh code")
-    kurs = models.IntegerField(verbose_name="Kurs",choices=((1,1),(2,2),(3,3),(4,4),(5,5)))
+    academic_code = models.CharField(max_length=50, verbose_name="Guruh code")
+    kurs = models.IntegerField(verbose_name="Kurs",choices=((1,1),(2,2),(3,3),(4,4),(5,5)), default=1)
 
     def __str__(self):
         return self.academic_code
@@ -65,16 +65,16 @@ class Subject(BaseModel):
 class Schedule(BaseModel):
     group = models.ForeignKey(
         Group, on_delete=models.CASCADE, verbose_name="Guruh")
-    subject = models.ForeignKey(
-        Subject, on_delete=models.CASCADE, verbose_name="Fan")
-    teacher = models.ForeignKey(
-        Teacher, on_delete=models.CASCADE, verbose_name="O'qituvchi")
-    room = models.ForeignKey(
-        Room, on_delete=models.CASCADE, verbose_name="Xona")
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name="Fan")
+    lesson_type = models.CharField(max_length=50, choices=(('Amaliyot', 'Amaliyot'), (
+        "Maru'za", "Maru'za"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Dars turi", default="Amaliyot")
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="O'qituvchi")
+    room = models.ForeignKey( Room, on_delete=models.CASCADE, verbose_name="Xona")
     day = models.CharField(max_length=50, choices=(('Dushanba', 'Dushanba'), ('Seshanba', 'Seshanba'), (
-        'Chorshanba', 'Chorshanba'), ('Payshanba', 'Payshanba'), ('Juma', 'Juma')), verbose_name="Kun")
+        'Chorshanba', 'Chorshanba'), ('Payshanba', 'Payshanba'), ('Juma', 'Juma')), verbose_name="Kun", default="Dushanba")
     para = models.CharField(max_length=50, choices=(
-        ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')), verbose_name="Para")
+        ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')), verbose_name="Juftlik", default="1")
+    week = models.CharField(max_length=20, choices=(('full', 'full'), ('odd', 'odd'), ('even', 'even')), verbose_name="Hafta", default="full")
 
     def __str__(self):
         return f"{self.group} - {self.subject}"
@@ -85,7 +85,7 @@ class Schedule(BaseModel):
 
 class Document(BaseModel):
     title = models.CharField(max_length=50, verbose_name="Fayl nomi")
-    file_url = models.FileField(upload_to="documents/", verbose_name="Fayl url")
+    file_url = models.FileField(upload_to="documents/", verbose_name="Fayl")
 
     def __str__(self):
         return self.title

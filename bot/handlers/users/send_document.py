@@ -22,6 +22,6 @@ async def message_write(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state="send_document", content_types=types.ContentType.ANY)
 async def send_message(message: types.Message, state: FSMContext):
-    await message.forward(chat_id=-1001795943163, message_thread_id=2)
+    await message.forward(chat_id=-1001795943163, message_thread_id=4)
     await message.answer(f"Xabaringiz yuborildi ✅", reply_markup=menu_btn)
     await state.finish()

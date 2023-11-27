@@ -10,38 +10,39 @@ admin.site.index_title = "KIF BOT"
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ['number', 'size', 'room_type', 'id']
-    search_fields = ['number', 'size', 'room_type']
-    list_filter = ['number', 'size', 'room_type']
+    list_display = [ 'id', 'room', 'size', 'room_type',]
+    search_fields = ['room', 'size', 'room_type']
+    list_filter = ['room', 'size', 'room_type']
+    list_display_links = ['id', 'room', ]
 
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ['name', 'id']
+    list_display = [ 'id', 'name']
     search_fields = ['name']
     list_filter = ['name']
 
 
 @admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
-    list_display = ['academic_code', 'id']
-    search_fields = ['academic_code']
-    list_filter = ['academic_code']
+    list_display = [ 'id', 'academic_code', 'kurs']
+    search_fields = ['academic_code', 'kurs']
+    list_filter = ['academic_code', 'kurs']
 
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ['name', 'id']
+    list_display = ['id', 'name']
     search_fields = ['name']
-    list_filter = ['name']
 
 
 @admin.register(Schedule)
 class ScheduleAdmin(admin.ModelAdmin):
-    list_display = ['group', 'subject', 'teacher', 'room', 'day', 'para', 'id']
-    search_fields = ['group', 'subject', 'teacher', 'room', 'day', 'para']
-    list_filter = ['group', 'subject', 'teacher', 'room', 'day', 'para']
-
+    list_display = ['id', 'group', 'subject', 'lesson_type', 'teacher', 'room', 'day', 'para', 'week']
+    search_fields = ['group', 'subject', 'lesson_type', 'teacher', 'room', 'day', 'para', 'week']
+    list_filter = ['group', 'subject', 'lesson_type', 'teacher', 'room', 'day', 'para', 'week']
+    list_display_links = ['id', 'group', ]
+    list_editable = ['day', 'para']
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
