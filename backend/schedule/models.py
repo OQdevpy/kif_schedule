@@ -71,7 +71,7 @@ class Schedule(BaseModel):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="O'qituvchi")
     room = models.ForeignKey( Room, on_delete=models.CASCADE, verbose_name="Xona")
     day = models.CharField(max_length=50, choices=(('Dushanba', 'Dushanba'), ('Seshanba', 'Seshanba'), (
-        'Chorshanba', 'Chorshanba'), ('Payshanba', 'Payshanba'), ('Juma', 'Juma')), verbose_name="Kun", default="Dushanba")
+        'Chorshanba', 'Chorshanba'), ('Payshanba', 'Payshanba'), ('Juma', 'Juma'), ('Shanba', 'Shanba')), verbose_name="Kun", default="Dushanba")
     para = models.CharField(max_length=50, choices=(
         ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')), verbose_name="Juftlik", default="1")
     week = models.CharField(max_length=20, choices=(('full', 'full'), ('odd', 'odd'), ('even', 'even')), verbose_name="Hafta", default="full")
@@ -85,14 +85,15 @@ class Schedule(BaseModel):
 
 class Document(BaseModel):
     title = models.CharField(max_length=50, verbose_name="Fayl nomi")
+    description = models.TextField(verbose_name="Fayl haqida", default=" ")
     file_url = models.FileField(upload_to="documents/", verbose_name="Fayl")
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = "Fayl"
-        verbose_name_plural = "Fayllar"
+        verbose_name = "Talaba hujjati"
+        verbose_name_plural = "Talaba hujjatlari"
 
     def file_url_tag(self):
         if self.file_url:
