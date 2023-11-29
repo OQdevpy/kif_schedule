@@ -13,13 +13,13 @@ from aiogram.types import InputFile
 async def start_bot(message: types.Message, state=FSMContext):
     user_ = message.from_user
     user = get_user_by_id(user_.id)
-    print(user)
-    print("===================")
+    # print(user)
+    # print("===================")
     
     if user.get("status_info") not in [200, 201]:
         username = user_.username if user_.username else None
         a = create_user(user_.id, username, user_.full_name, True)
-        print(a)
+        # print(a)
     await message.answer(f"Assalomu alaykum {user_.full_name}", reply_markup=menu_btn)
 
 @dp.message_handler(text="📆 Dars jadvali")

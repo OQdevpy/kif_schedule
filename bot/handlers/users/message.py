@@ -8,8 +8,8 @@ from data.api import get_user_by_id, update_full_name, update_phone, update_user
 @dp.message_handler(text = '📨 Dekanatga xabar yozish')
 async def message_write(message: types.Message, state: FSMContext):
     user = get_user_by_id(tg_id=message.from_user.id)
-    print(user)
-    print("============================================")
+    # print(user)
+    # print("============================================")
     if not user.get("phone_number"):
         await message.answer("Ism Familiyangizni yuboring", reply_markup=back_btn)
         await state.set_state("full_name")

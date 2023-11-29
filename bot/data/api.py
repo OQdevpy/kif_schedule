@@ -13,7 +13,7 @@ def create_user(telegram_id, username, full_name, is_active):
         'is_active': is_active
     }
     response = requests.post(url, data=data)
-    print("BaseURL:  ", BASE_URL)
+    # print("BaseURL:  ", BASE_URL)
     return response.status_code
 
 def update_phone(telegram_id, phone):
