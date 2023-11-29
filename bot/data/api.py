@@ -86,6 +86,15 @@ def get_user_with_name(full_name):
     response = requests.get(url)
     return response.json()
 
+def get_group_info(id):
+    url = BASE_URL + f'group/{id}/'
+    response = requests.get(url)
+    return response.json()
+
+## get group
+# a = get_group_info(1)
+# print(a)
+
 ### get user with name success
 # a = get_user_with_name(full_name='𝕵𝖆𝖑𝖔𝖑𝖎𝖉𝖉𝖎𝖓 ️')
 # print(a)

@@ -42,7 +42,7 @@ class ScheduleAdmin(admin.ModelAdmin):
     search_fields = ['group', 'subject', 'lesson_type', 'teacher', 'room', 'day', 'para', 'week']
     list_filter = ['group', 'subject', 'lesson_type', 'teacher', 'room', 'day', 'para', 'week']
     list_display_links = ['id', 'group', ]
-    list_editable = ['day', 'para', 'week']
+    list_editable = ['lesson_type', 'day', 'para', 'week']
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):

@@ -4,7 +4,7 @@ from data.config import ADMINS
 from loader import dp, bot
 from aiogram.dispatcher import FSMContext
 from keyboards.default.defoult_btn import back_btn, menu_btn, message_phone, student_documents_btn
-from data.api import get_user_by_id, create_user, get_sources, get_groups, get_group_schedule, get_sources_by_id
+from data.api import get_user_by_id, create_user, get_sources, get_groups, get_group_schedule, get_sources_by_id, get_group_info
 from keyboards.inline.inline_btn import schedule_kurs_btn_func, schedule_group_btn_func
 import requests
 from aiogram.types import InputFile
@@ -45,9 +45,10 @@ async def back(call: types.CallbackQuery):
 @dp.callback_query_handler(text_contains="group_")
 async def schedule_func(call: types.CallbackQuery):
     await call.answer(cache_time=2)
-    group_id = call.data[-1]
+    group_id = call.data.split("_")[-1]
     schedule = get_group_schedule(group_id=group_id)
-    schedule_text = ""
+    group_name = get_group_info(group_id).get("academic_code", "Nomalum")
+    schedule_text = f"   <b>{group_name} - guruh dars jadvali </b>\n\n"
     for day, lessons in schedule.items():
         schedule_text += f"🔘 <b>{day}</b>\n"
         for lesson in lessons:

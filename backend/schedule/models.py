@@ -18,7 +18,7 @@ class Room(BaseModel):
     room = models.CharField(max_length=55, verbose_name="O'quv xonasi")
     size = models.IntegerField(verbose_name="Xona o'lchami", default=30)
     room_type = models.CharField(max_length=50, choices=(('Amaliyot', 'Amaliyot'), (
-        "Maru'za", "Maru'za"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Xona turi", default="Amaliyot")
+        "Ma'ruza", "Ma'ruza"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Xona turi", default="Amaliyot")
 
     def __str__(self):
         return f"{self.room} - {self.room_type} ({self.size})"
@@ -67,7 +67,7 @@ class Schedule(BaseModel):
         Group, on_delete=models.CASCADE, verbose_name="Guruh")
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name="Fan")
     lesson_type = models.CharField(max_length=50, choices=(('Amaliyot', 'Amaliyot'), (
-        "Maru'za", "Maru'za"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Dars turi", default="Amaliyot")
+        "Ma'ruza", "Ma'ruza"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Dars turi", default="Amaliyot")
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="O'qituvchi")
     room = models.ForeignKey( Room, on_delete=models.CASCADE, verbose_name="Xona")
     day = models.CharField(max_length=50, choices=(('Dushanba', 'Dushanba'), ('Seshanba', 'Seshanba'), (
