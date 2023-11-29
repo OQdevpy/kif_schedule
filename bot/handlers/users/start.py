@@ -53,15 +53,15 @@ async def schedule_func(call: types.CallbackQuery):
         schedule_text += f"🔘 <b>{day}</b>\n"
         for lesson in lessons:
             if lesson['week'] == 'full':
-                schedule_text += f"    ▪️<b>  {lesson['para']} - juftlik </b>| 🏫 {lesson['room']} xona\n"
+                schedule_text += f"    ▪️<b>  {lesson['para']} </b>| 🏫 {lesson['room']} xona\n"
                 schedule_text += f"    📚  Fan: <b>{lesson['subject']}</b> (<i>{lesson['lesson_type']}</i>) \n"\
                                 f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
             elif lesson['week'] == 'odd':
-                schedule_text += f"    ▪️<b>  {lesson['para']} - juftlik (toq hafta) </b>| 🏫 {lesson['room']} xona\n"\
+                schedule_text += f"    ▪️<b>  {lesson['para']} (toq hafta) </b>| 🏫 {lesson['room']} xona\n"\
                                 f"    📚  Fan: <b>{lesson['subject']}</b> (<i>{lesson['lesson_type']}</i>)\n"\
                                 f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
             elif lesson['week'] == 'even':
-                schedule_text += f"    ▪️<b> {lesson['para']} - juftlik (juft hafta) </b>| 🏫 {lesson['room']} xona\n"\
+                schedule_text += f"    ▪️<b> {lesson['para']} (juft hafta) </b>| 🏫 {lesson['room']} xona\n"\
                                 f"    📚  Fan: <b>{lesson['subject']}</b> (<i>{lesson['lesson_type']}</i>)\n"\
                                 f"    👨‍🏫  O'qituvchi: <i>{lesson['teacher']}</i>\n\n"
 

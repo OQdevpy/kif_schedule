@@ -5,6 +5,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.db.models import Q
 # Create your views here.
 
 
@@ -14,12 +15,12 @@ class GroupViewSet(ModelViewSet):
 
     def get_queryset(self):
         if kurs := self.request.GET.get("kurs", None):
-            return self.queryset.filter(kurs=int(kurs))
+            return self.queryset.filter(Q(kurs=int(kurs)), Q(is_active=True))
         return self.queryset.all()
 
 
 class DocumentViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
-    queryset = Document.objects.all()
+    queryset = Document.objects.filter(is_active=True)
     serializer_class = DocumentSerializer
     lookup_field = "title"
 
@@ -32,7 +33,7 @@ class ScheduleViewSet(ListModelMixin, GenericViewSet):
     def get_queryset(self):
         qs = self.queryset
         if group := self.request.GET.get("gorup", None):
-            qs = qs.filter(group=int(group))
+            qs = qs.filter(Q(group=int(group)) & Q(is_active=True))
         return qs
     @action(detail=True, methods=["GET"])
     def group(self, request, group=None):

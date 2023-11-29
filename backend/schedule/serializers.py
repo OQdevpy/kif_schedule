@@ -15,10 +15,14 @@ class ScheduleSerializer(serializers.ModelSerializer):
     room_type = serializers.CharField(source = "room.room_type")
     subject = serializers.CharField(source = "subject.name")
     teacher = serializers.CharField(source = "teacher.name")
+    para = serializers.SerializerMethodField('get_para')
     
     class Meta:
         model = Schedule
         fields = "__all__"
+        
+    def get_para(self, obj):
+        return obj.para.get_para_full()
     
 # write sz for Document and BotUser
 class DocumentSerializer(serializers.ModelSerializer):
