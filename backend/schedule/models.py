@@ -61,20 +61,36 @@ class Subject(BaseModel):
         verbose_name = "Fan"
         verbose_name_plural = "Fanlar"
 
+class Para(BaseModel):    
+    para = models.CharField(max_length=50, choices=( ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7')), verbose_name="Juftlik", default="1")
+    time_start = models.TimeField(verbose_name="Juftlik boshlanish vaqti", default="08:30:00")
+    time_end = models.TimeField(verbose_name="Juftlik tugash vaqti", default="09:50:00")
 
+    def __str__(self):
+        return f"{self.para} : {self.time_start} - {self.time_end}"
+
+    class Meta:
+        verbose_name = "Juftlik"
+        verbose_name_plural = "Juftliklar"
+    
+ 
+    def get_para_full(self):
+        return f"{self.para} - juftlik ({self.time_start} - {self.time_end})"
+        
+        
 class Schedule(BaseModel):
     group = models.ForeignKey(
         Group, on_delete=models.CASCADE, verbose_name="Guruh")
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name="Fan")
     lesson_type = models.CharField(max_length=50, choices=(('Amaliyot', 'Amaliyot'), (
         "Ma'ruza", "Ma'ruza"), ('Laboratoriya', 'Laboratoriya')), verbose_name="Dars turi", default="Amaliyot")
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="O'qituvchi")
+    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, verbose_name="O'qituvchi", null=True)
     room = models.ForeignKey( Room, on_delete=models.CASCADE, verbose_name="Xona")
     day = models.CharField(max_length=50, choices=(('Dushanba', 'Dushanba'), ('Seshanba', 'Seshanba'), (
         'Chorshanba', 'Chorshanba'), ('Payshanba', 'Payshanba'), ('Juma', 'Juma'), ('Shanba', 'Shanba')), verbose_name="Kun", default="Dushanba")
-    para = models.CharField(max_length=50, choices=(
-        ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')), verbose_name="Juftlik", default="1")
+    para = models.ForeignKey(Para, on_delete=models.SET_NULL, verbose_name="Juftlik", null=True)
     week = models.CharField(max_length=20, choices=(('full', 'full'), ('odd', 'odd'), ('even', 'even')), verbose_name="Hafta", default="full")
+    semester = models.CharField(max_length=20, choices=(('1', 'Kuzgi'), ('2', 'Bahorgi')), verbose_name="Semestr", default="1")
 
     def __str__(self):
         return f"{self.group} - {self.subject}"
@@ -82,6 +98,8 @@ class Schedule(BaseModel):
     class Meta:
         verbose_name = "Dars jadvali"
         verbose_name_plural = "Dars jadvali"
+    
+    # def get_para_display(self):
 
 class Document(BaseModel):
     title = models.CharField(max_length=50, verbose_name="Fayl nomi")
