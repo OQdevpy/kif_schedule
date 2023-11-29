@@ -67,7 +67,7 @@ class Para(BaseModel):
     time_end = models.TimeField(verbose_name="Juftlik tugash vaqti", default="09:50:00")
 
     def __str__(self):
-        return f"{self.para} : {self.time_start} - {self.time_end}"
+        return f"{self.para}.  {self.time_start} - {self.time_end}"
 
     class Meta:
         verbose_name = "Juftlik"
