@@ -13,6 +13,7 @@ def create_user(telegram_id, username, full_name, is_active):
         'is_active': is_active
     }
     response = requests.post(url, data=data)
+    print("BaseURL:  ", BASE_URL)
     return response.status_code
 
 def update_phone(telegram_id, phone):
@@ -56,7 +57,9 @@ def get_all_users():
 def get_user_by_id(tg_id):
     url = BASE_URL + f'botuser/{tg_id}/'
     response = requests.get(url)
-    return response.json()
+    data = response.json()
+    data["status_info"] = response.status_code
+    return data
 
 def get_sources():
     url = BASE_URL + 'document/'
