@@ -12,9 +12,9 @@ menu_btn = ReplyKeyboardMarkup(
         [
             KeyboardButton(text="📨 Dekanatga xabar yozish"),
         ],
-         [
-            KeyboardButton(text="📄 Dekanatga hujjat yuborish"),
-        ]
+        #  [
+        #     KeyboardButton(text="📄 Dekanatga hujjat yuborish"),
+        # ]
        
     ],
     resize_keyboard=True,
