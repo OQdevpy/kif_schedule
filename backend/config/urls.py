@@ -31,7 +31,6 @@ router.register("botuser", BotUserListRetrieve)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('getuser/<str:full_name>/', GetBotUserView.as_view())
-
 ]
 
 urlpatterns+=router.urls
