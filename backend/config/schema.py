@@ -25,7 +25,7 @@ swagger_urlpatterns = [
         name="schema-json",
     ),
     re_path(
-        r"^swagger/$",
+        r"",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
